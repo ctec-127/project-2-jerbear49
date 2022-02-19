@@ -28,20 +28,27 @@ if (isset($_GET["filter"])) {
         $sql = "SELECT * FROM $db_table ORDER BY last_name ASC";
     } elseif ($orderby == "student_id") {
         $sql = "SELECT * FROM $db_table ORDER BY student_id ASC";
+    } elseif ($orderby == "degree_program") {
+        $sql = "SELECT * FROM $db_table ORDER BY degree_program ASC";
+    } elseif ($orderby == "gpa") {
+        $sql = "SELECT * FROM $db_table ORDER BY gpa ASC";
+    } elseif ($orderby == "financial_aid") {
+        $sql = "SELECT * FROM $db_table ORDER BY financial_aid ASC";
     } elseif ($orderby == "phone") {
         $sql = "SELECT * FROM $db_table ORDER BY phone ASC";
     } elseif ($orderby == "email") {
         $sql = "SELECT * FROM $db_table ORDER BY email ASC";
     }
     $stmt = $db->prepare($sql);
-    $stmt->execute(["orderby" => $orderby]);
+    $stmt->execute();
+    // $stmt->execute(["orderby" => $orderby]);
 } else {
-    $sql = "SELECT * FROM $db_table";
+    $sql = "SELECT * FROM $db_table ORDER BY data_created DESC";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 }
 
-$records = $stmt->fetchAll();
+$records = $stmt->fetchAll(); // $records is an array of objects
 
 if ($stmt->rowCount() == 0 && $filter != '') {
     echo "<h2 class=\"mt-4 alert alert-warning\">No Records for <strong>last names</strong> starting with <strong>$filter</strong></h2>";

@@ -25,8 +25,34 @@ if (basename($_SERVER['PHP_SELF']) == 'create-record.php') {
     <label class="col-form-label" for="last">Last Name</label>
     <input class="form-control" type="text" id="last" name="last" value="<?= isset($last) ? $last : null ?>">
     <br>
-    <label class="col-form-label" for="id">Student ID </label>
+    <label class="col-form-label" for="id">Student ID</label>
     <input class="form-control" type="number" id="id" name="student_id" value="<?= isset($student_id) ? $student_id : null ?>">
+    <br>
+    <!-- Sticky select for degree_program -->
+    <label class="col-form-label" for="degreeprogram">Degree Program</label>
+    <select class="form-select" aria-label="Default select " id="degreeprogram" name="degree_program">
+        <option value="Undeclared" selected <?= $degree_program == "Undeclared" ? "selected" : null ?>>Undeclared</option>
+        <option value="AAT Web Development" <?= $degree_program == "AAT Web Development" ? "selected" : null ?>>AAT Web Development</option>
+        <option value="AAS Business Administration" <?= $degree_program == "AAS Business Administration" ? "selected" : null ?>>AAS Business Administration</option>
+        <option value="AAT Digital Media Arts" <?= $degree_program == "AAS Digital Media Arts" ? "selected" : null ?>>AAT Digital Media Arts</option>
+        <option value="BAS Dental Hygiene" <?= $degree_program == "BAS Dental Hygiene" ? "selected" : null ?>>BAS Dental Hygiene</option>
+        <option value="BAS Human Services" <?= $degree_program == "BAS Human Services" ? "selected" : null ?>>BAS Human Services</option>
+    </select>
+    <br>
+    <label class="col-form-label" for="gpa">GPA</label>
+    <input class="form-control" type="number" id="gpa" name="gpa" min="0" max="4" step="0.01" value="<?= isset($gpa) ? $gpa : null ?>">
+    <br>
+    <!-- Sticky radio -->
+    <!-- Use of the ternary makes ti 'sticky' if 'isset' -->
+    <h6>Financial Aid</h6>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" value="1" id="finaid_yes" name="financial_aid" <?= isset($financial_aid_yes) ? 'checked' : null ?>>
+        <label class="form-check-label" for="finaid_yes">Yes</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" value="0" id="finaid_no" name="financial_aid" <?= isset($financial_aid__no) ? 'checked' : null ?>>
+        <label class="form-check-label" for="finaid_no">No</label>
+    </div>
     <br>
     <label class="col-form-label" for="email">Email</label>
     <input class="form-control" type="text" id="email" name="email" value="<?= isset($email) ? $email : null ?>">
