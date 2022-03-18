@@ -13,10 +13,15 @@ if (isset($_GET["id"])) {
     $stmt->execute(["id" => $_GET["id"]]);
     // If you get a row back you successfully deleted the record
     $result = $stmt->rowCount();
+    echo $result;
     if ($result) {
         // if successfully, redirect the user to the display-records.php page with a parameter
         header('location: display-records.php?message=I%20 successfully%20deleted%20that%20record%20for%20you.');
     } else {
-        echo '<h1 class="display-5">Please do not play with our site. GO AWAY!</h1>';
+        // echo '<h1 class="display-5">Please do not play with our site. GO AWAY!</h1>';
+        header('location: https://www.youtube.com/watch?v=FIzgJyhxbKY');
     }
+} else {
+    // If no id is in the query string, redirect the user
+    header('location: https://www.youtube.com/watch?v=FIzgJyhxbKY');
 }

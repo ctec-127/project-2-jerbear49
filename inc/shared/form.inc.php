@@ -16,21 +16,23 @@ if (basename($_SERVER['PHP_SELF']) == 'create-record.php') {
 } else if (basename($_SERVER['PHP_SELF']) == 'advanced-search.php') {
     $button_label = "Search...";
 }
-?>
 
+// echo "Yes " . $financial_aid_no;
+// echo "No " . $financial_aid_yes;
+?>
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <label class="col-form-label" for="id">Student ID <strong>(Cannot Be Changed)</strong></label>
+    <input class="form-control" type="number" id="id" name="student_id" value="<?= isset($student_id) ? $student_id : null ?>">
+    <br>
     <label class="col-form-label" for="first">First Name</label>
-    <input class="form-control" type="text" id="first" name="first" value="<?= isset($first) ? $first : null ?>">
+    <input class="form-control" type="text" id="first" name="first_name" value="<?= isset($first_name) ? $first_name : null ?>">
     <br>
     <label class="col-form-label" for="last">Last Name</label>
-    <input class="form-control" type="text" id="last" name="last" value="<?= isset($last) ? $last : null ?>">
-    <br>
-    <label class="col-form-label" for="id">Student ID</label>
-    <input class="form-control" type="number" id="id" name="student_id" value="<?= isset($student_id) ? $student_id : null ?>">
+    <input class="form-control" type="text" id="last" name="last_name" value="<?= isset($last_name) ? $last_name : null ?>">
     <br>
     <!-- Sticky select for degree_program -->
     <label class="col-form-label" for="degreeprogram">Degree Program</label>
-    <select class="form-select" aria-label="Default select " id="degreeprogram" name="degree_program">
+    <select class="form-select" aria-label="Default select" id="degreeprogram" name="degree_program">
         <option value="Undeclared" selected <?= $degree_program == "Undeclared" ? "selected" : null ?>>Undeclared</option>
         <option value="AAT Web Development" <?= $degree_program == "AAT Web Development" ? "selected" : null ?>>AAT Web Development</option>
         <option value="AAS Business Administration" <?= $degree_program == "AAS Business Administration" ? "selected" : null ?>>AAS Business Administration</option>
@@ -46,13 +48,16 @@ if (basename($_SERVER['PHP_SELF']) == 'create-record.php') {
     <!-- Use of the ternary makes ti 'sticky' if 'isset' -->
     <h6>Financial Aid</h6>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="1" id="finaid_yes" name="financial_aid" <?= isset($financial_aid_yes) ? 'checked' : null ?>>
-        <label class="form-check-label" for="finaid_yes">Yes</label>
+        <input class="form-check-input" type="radio" value="1" id="financial_aid_yes" name="financial_aid" <?= isset($financial_aid_yes) == true ? 'checked' : null ?>>
+        <label class="form-check-label" for="financial_aid_yes">Yes</label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" value="0" id="finaid_no" name="financial_aid" <?= isset($financial_aid__no) ? 'checked' : null ?>>
-        <label class="form-check-label" for="finaid_no">No</label>
+        <input class="form-check-input" type="radio" value="0" id="financial_aid_no" name="financial_aid" <?= isset($financial_aid_no) == true ? 'checked' : null ?>>
+        <label class="form-check-label" for="financial_aid_no">No</label>
     </div>
+    <br>
+    <label class="col-form-label" for="graduation_date">Graduation Date</label>
+    <input class="form-control" type="date" id="graduation_date" name="graduation_date" value="<?= isset($graduation_date) ? $graduation_date : null ?>">
     <br>
     <label class="col-form-label" for="email">Email</label>
     <input class="form-control" type="text" id="email" name="email" value="<?= isset($email) ? $email : null ?>">
@@ -63,4 +68,5 @@ if (basename($_SERVER['PHP_SELF']) == 'create-record.php') {
     <br>
     <a href="display-records.php">Cancel</a>&nbsp;&nbsp;
     <button class="btn btn-primary" type="submit"><?= $button_label ?></button>
+    <input type="hidden" name="id" value="<?= isset($id) ? $id : null ?>">
 </form>

@@ -22,12 +22,12 @@ if (isset($_GET["filter"])) {
     $stmt = $db->prepare($sql);
     $stmt->execute(["filter" => $filter . '%']);
 } elseif (isset($_GET["sortby"])) {
-    if ($orderby == "first_name") {
+    if ($orderby == "student_id") {
+        $sql = "SELECT * FROM $db_table ORDER BY Student_id ASC";
+    } elseif ($orderby == "first_name") {
         $sql = "SELECT * FROM $db_table ORDER BY first_name ASC";
     } elseif ($orderby == "last_name") {
         $sql = "SELECT * FROM $db_table ORDER BY last_name ASC";
-    } elseif ($orderby == "student_id") {
-        $sql = "SELECT * FROM $db_table ORDER BY student_id ASC";
     } elseif ($orderby == "degree_program") {
         $sql = "SELECT * FROM $db_table ORDER BY degree_program ASC";
     } elseif ($orderby == "gpa") {
@@ -38,6 +38,8 @@ if (isset($_GET["filter"])) {
         $sql = "SELECT * FROM $db_table ORDER BY phone ASC";
     } elseif ($orderby == "email") {
         $sql = "SELECT * FROM $db_table ORDER BY email ASC";
+    } elseif ($orderby == "graduation_date") {
+        $sql = "SELECT * FROM $db_table ORDER BY graduation_date ASC";
     }
     $stmt = $db->prepare($sql);
     $stmt->execute();
