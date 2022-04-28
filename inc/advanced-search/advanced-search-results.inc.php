@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     array_push($data, "degree_program = {$db->quote($_POST["degree_program"])}");
 
     $sql = $sql . implode(" AND ", $data);
-    echo $sql;
 
     $stmt = $db->prepare($sql);
     $stmt->execute();
