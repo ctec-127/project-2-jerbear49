@@ -28,7 +28,7 @@ require_once 'inc/app/config.inc.php';
                         display_record_table($results);
                     }
                 } else {
-                    echo "<p class=\"display-4 mt-4 text-center\">I can't search if you don't give<br>me something to search for.</p>";
+                    echo "<h3 class=\"display-4 mt-4 text-center\">I can't search if you don't give<br>me something to search for.</h3>";
                     echo '<img class="mx-auto d-block mt-4" src="img/nosmile.png" alt="A face with no smile">';
                 }
             }
